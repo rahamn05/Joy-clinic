@@ -3,567 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOY Clinic - Trusted Family Healthcare</title>
-    <meta name="description" content="JOY Clinic provides compassionate, affordable, and high-quality healthcare with experienced doctors, modern facilities, and patient-centered care.">
+    <title>JOY CLINIC - Trusted Family Healthcare</title>
     
+    <!-- Tailwind CSS Framework for Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        medicalBlue: '#0F4C81',
-                        accentGold: '#D4AF37',
-                    }
-                }
-            }
-        }
-    </script>
     
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .glass-dark {
-            background: rgba(15, 76, 129, 0.1);
-            backdrop-filter: blur(12px);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-medicalBlue selection:text-white">
+<body class="bg-slate-50 text-slate-800">
 
-    <div id="loader" class="fixed inset-0 bg-[#0F4C81] flex flex-col justify-center items-center z-50 transition-opacity duration-500">
-        <div class="relative flex items-center justify-center mb-4">
-            <div class="animate-ping absolute inline-flex h-16 w-16 rounded-full bg-accentGold opacity-40"></div>
-            <div class="rounded-full bg-white p-4 shadow-xl">
-                <i data-lucide="heart" class="h-10 w-10 text-medicalBlue fill-medicalBlue"></i>
-            </div>
-        </div>
-        <h2 class="text-white text-2xl font-bold tracking-wider animate-pulse">JOY CLINIC</h2>
-        <p class="text-white/70 text-xs mt-2 tracking-widest uppercase">Trusted Family Healthcare</p>
-    </div>
-
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-5 bg-transparent">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <a href="#home" class="flex items-center gap-2 group">
-                <div class="bg-medicalBlue text-white p-2 rounded-xl border border-accentGold/30">
-                    <i data-lucide="heart" class="h-6 w-6 fill-white"></i>
+    <!-- HEADER & NAVBAR -->
+    <header class="sticky top-0 z-50 bg-white shadow-md border-b border-blue-100">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2.5 rounded-xl shadow-md shadow-blue-200">
+                    <i class="fa-solid fa-heart-pulse text-2xl animate-pulse"></i>
                 </div>
                 <div>
-                    <span id="logo-text" class="font-black text-2xl tracking-tight block leading-none text-medicalBlue md:text-white transition-colors">
-                        JOY <span class="text-accentGold">CLINIC</span>
-                    </span>
-                    <span id="logo-sub" class="text-[9px] tracking-widest font-bold uppercase block mt-0.5 text-slate-600 md:text-white/80 transition-colors">
-                        Healthcare
-                    </span>
-                </div>
-            </a>
-
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#home" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">Home</a>
-                <a href="#about" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">About</a>
-                <a href="#services" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">Services</a>
-                <a href="#facilities" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">Facilities</a>
-                <a href="#gallery" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">Gallery</a>
-                <a href="#contact" class="nav-link font-semibold text-sm tracking-wide text-slate-800 md:text-white hover:text-accentGold transition-colors">Contact</a>
-                <button onclick="toggleModal(true)" class="bg-medicalBlue text-white border border-accentGold/40 hover:bg-medicalBlue/90 px-5 py-2.5 rounded-full text-sm font-bold tracking-wide shadow-md transition-all">
-                    Book Appointment
-                </button>
-            </div>
-
-            <div class="md:hidden">
-                <button onclick="toggleMobileMenu()" class="p-2 text-medicalBlue">
-                    <i id="menu-icon" data-lucide="menu" class="h-6 w-6"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <div id="mobile-menu" class="hidden fixed inset-x-0 top-[68px] p-4 bg-white/95 backdrop-blur-lg shadow-xl z-30 border-b border-slate-100 flex flex-col gap-4">
-        <a href="#home" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">Home</a>
-        <a href="#about" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">About</a>
-        <a href="#services" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">Services</a>
-        <a href="#facilities" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">Facilities</a>
-        <a href="#gallery" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">Gallery</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="font-semibold text-slate-800 py-2 border-b border-slate-100 text-lg">Contact</a>
-        <button onclick="toggleMobileMenu(); toggleModal(true);" class="bg-medicalBlue text-white text-center py-3 rounded-xl font-bold tracking-wide mt-2">
-            Book Appointment
-        </button>
-    </div>
-
-    <header id="home" class="relative min-h-screen flex items-center pt-24 md:pt-0 bg-gradient-to-tr from-slate-100 via-white to-blue-50/50 overflow-hidden">
-        <div class="absolute right-[-10%] top-[-10%] w-[500px] h-[500px] rounded-full bg-blue-100/40 blur-3xl pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-            <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-medicalBlue/10 px-4 py-1.5 rounded-full text-medicalBlue text-xs font-bold uppercase tracking-widest mx-auto lg:mx-0 w-fit mb-6 border border-medicalBlue/20">
-                    <i data-lucide="sparkles" class="h-3.5 w-3.5 text-accentGold"></i> Premium Family Clinic
-                </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-medicalBlue tracking-tight leading-[1.1] mb-6">
-                    Trusted Healthcare <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-medicalBlue to-blue-500">for Every Family</span>
-                </h1>
-                <p class="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-                    JOY Clinic provides compassionate, affordable, and high-quality healthcare with experienced doctors, modern facilities, and patient-centered care.
-                </p>
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                    <button onclick="toggleModal(true)" class="w-full sm:w-auto px-8 py-4 bg-medicalBlue text-white rounded-xl font-bold tracking-wide shadow-lg shadow-medicalBlue/20 hover:bg-medicalBlue/90 transition-all transform hover:-translate-y-0.5">
-                        Book Appointment
-                    </button>
-                    <a href="tel:+919360394172" class="w-full sm:w-auto px-8 py-4 bg-white text-medicalBlue border border-slate-200 rounded-xl font-bold tracking-wide shadow-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="phone" class="h-4 w-4 text-accentGold"></i> Call Now
-                    </a>
-                    <button onclick="openWhatsApp()" class="w-full sm:w-auto px-8 py-4 bg-emerald-600 text-white rounded-xl font-bold tracking-wide shadow-lg shadow-emerald-600/10 hover:bg-emerald-700 transition-all flex items-center justify-center gap-2">
-                        WhatsApp Chat
-                    </button>
+                    <h1 class="text-xl font-bold tracking-tight text-blue-900">JOY CLINIC</h1>
+                    <p class="text-xs font-medium text-emerald-600 tracking-wide uppercase">Trusted Family Healthcare</p>
                 </div>
             </div>
-            
-            <div class="lg:col-span-5 relative hidden lg:flex justify-center items-center">
-                <div class="relative w-full max-w-md aspect-square rounded-[2rem] bg-gradient-to-tr from-medicalBlue to-blue-600 shadow-2xl overflow-hidden border-4 border-white flex flex-col justify-between p-8 text-white">
-                    <div class="flex justify-between items-start">
-                        <div class="bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/20">
-                            <i data-lucide="heart" class="h-8 w-8 text-accentGold fill-accentGold"></i>
-                        </div>
-                        <div class="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold tracking-wide border border-white/10">
-                            📍 Thangachimadam
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-bold tracking-tight mb-2">JOY Clinic Hub</h3>
-                        <p class="text-sm text-white/80 leading-relaxed mb-4">Delivering top-tier outpatient, diagnostics, and modern geriatric observation support.</p>
-                        <div class="grid grid-cols-2 gap-2 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/10">
-                            <div>
-                                <span class="text-[10px] uppercase text-white/60 tracking-wider block">Lab Hours</span>
-                                <span class="text-sm font-bold text-accentGold">From 7:30 AM</span>
-                            </div>
-                            <div>
-                                <span class="text-[10px] uppercase text-white/60 tracking-wider block">Consultation</span>
-                                <span class="text-sm font-bold text-white">Morning & Evening</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <nav class="flex flex-wrap justify-center items-center gap-4 text-sm font-medium text-slate-600">
+                <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#services" class="hover:text-blue-600 transition">Services</a>
+                <a href="#facilities" class="hover:text-blue-600 transition">Facilities</a>
+                <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+                <a href="#appointment" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-md shadow-blue-100 transition">Book Appointment</a>
+            </nav>
         </div>
     </header>
 
-    <section id="about" class="py-24 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- HERO SECTION -->
+    <section id="home" class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 px-4">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-700/20 via-transparent to-transparent pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-blue-500/20 text-blue-300 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-blue-400/30 mb-4">Premium Family Clinic</span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+                Trusted Healthcare <br><span class="text-emerald-400">for Every Family</span>
+            </h2>
+            <p class="text-base sm:text-lg text-blue-100 max-w-2xl mx-auto mb-8 leading-relaxed">
+                JOY Clinic provides compassionate, affordable, and high-quality healthcare with experienced doctors, modern laboratory facilities, and dedicated patient-centered care.
+            </p>
+            
+            <!-- Quick Actions Call-to-Actions -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
+                <a href="#appointment" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-emerald-900/30 transition flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-calendar-check"></i> Book Appointment
+                </a>
+                <a href="tel:+919360294172" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-blue-950/40 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-phone"></i> Call Now
+                </a>
+                <a href="https://wa.me/919360294172" target="_blank" class="w-full sm:w-auto bg-white text-slate-900 hover:bg-slate-100 px-6 py-3.5 rounded-xl font-bold shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 text-lg"></i> WhatsApp Now
+                </a>
+            </div>
+
+            <!-- Quick Info Ribbon -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 max-w-2xl mx-auto grid grid-cols-2 gap-4 border border-white/10 text-sm">
+                <div class="text-center border-r border-white/10">
+                    <p class="text-xs text-blue-300 uppercase font-medium">Lab Opening</p>
+                    <p class="font-bold text-base mt-0.5">From 7:30 AM</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-xs text-blue-300 uppercase font-medium">Location</p>
+                    <p class="font-bold text-base mt-0.5">Thiyagadurgam</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE HUB SECTION -->
+    <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-4 bg-blue-50 rounded-xl flex items-start gap-4">
+                <div class="bg-blue-600 text-white p-3 rounded-lg"><i class="fa-solid fa-user-doctor text-xl"></i></div>
                 <div>
-                    <span class="text-xs uppercase tracking-widest font-extrabold text-accentGold mb-2 block">Our Identity</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-medicalBlue tracking-tight mb-6">About JOY Clinic</h2>
-                    <p class="text-slate-600 font-medium text-lg leading-relaxed mb-6">
-                        JOY Clinic is dedicated to delivering quality healthcare with compassion and professionalism. We provide comprehensive medical care, advanced laboratory services, ECG facilities, observation beds, wound care, and home visits for elderly patients.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="h-5 w-5 text-medicalBlue"></i>
-                            <span class="font-semibold text-sm text-slate-700">Patient Centered</span>
-                        </div>
-                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="h-5 w-5 text-medicalBlue"></i>
-                            <span class="font-semibold text-sm text-slate-700">Advanced Lab</span>
-                        </div>
-                    </div>
+                    <h4 class="font-bold text-slate-900">JOY Clinic Hub</h4>
+                    <p class="text-xs text-slate-500 mt-1">Delivering top-tier outpatient, diagnostics, and modern geriatric observation support.</p>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl border border-slate-100 text-center shadow-sm">
-                        <span class="block text-3xl font-black text-medicalBlue mb-1">100%</span>
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Compassionate Care</span>
-                    </div>
-                    <div class="p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl border border-slate-100 text-center shadow-sm">
-                        <span class="block text-3xl font-black text-accentGold mb-1">7:30 AM</span>
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Lab Starts</span>
-                    </div>
-                    <div class="p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 rounded-2xl border border-slate-100 text-center shadow-sm col-span-2">
-                        <span class="block text-xl font-bold text-medicalBlue mb-1">Home Visits Available</span>
-                        <span class="text-xs font-medium text-slate-500">Tailored specifically for local elderly residents</span>
-                    </div>
+            </div>
+            <div class="p-4 bg-emerald-50 rounded-xl flex items-start gap-4">
+                <div class="bg-emerald-600 text-white p-3 rounded-lg"><i class="fa-regular fa-clock text-xl"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-900">Consultation Timings</h4>
+                    <p class="text-xs text-slate-500 mt-1">Convenient morning and evening consultation frameworks tailored for families.</p>
+                </div>
+            </div>
+            <div class="p-4 bg-indigo-50 rounded-xl flex items-start gap-4">
+                <div class="bg-indigo-600 text-white p-3 rounded-lg"><i class="fa-solid fa-shield-halved text-xl"></i></div>
+                <div>
+                    <h4 class="font-bold text-slate-900">Our Identity</h4>
+                    <p class="text-xs text-slate-500 mt-1">A pillar of safety, clinical excellence, and authentic transparency within the community.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-gradient-to-b from-slate-50 to-slate-100/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs uppercase tracking-widest font-extrabold text-accentGold mb-2 block">Clinical Specialties</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-medicalBlue tracking-tight">Our Dedicated Medical Services</h2>
-                <div class="w-12 h-1 bg-accentGold mx-auto mt-4 rounded-full"></div>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="max-w-5xl mx-auto px-4 py-16">
+        <div class="text-center max-w-xl mx-auto mb-12">
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">About JOY Clinic</h3>
+            <p class="text-sm text-slate-500 mt-2">Dedicated to delivering quality healthcare with compassion and professional precision.</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <p class="text-slate-600 leading-relaxed text-sm mb-6">
+                    JOY Clinic stands as a premium destination for comprehensive medical care. We offer customized medical services, intensive ICU structures, observation beds, advanced wound care services, and specialized home care arrangements carefully mapped out for local elderly patients.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 text-sm font-medium text-slate-700">
+                        <i class="fa-solid fa-circle-check text-emerald-500"></i> Patient-Centered Environment
+                    </div>
+                    <div class="flex items-center gap-3 text-sm font-medium text-slate-700">
+                        <i class="fa-solid fa-circle-check text-emerald-500"></i> Advanced Diagnostics & Laboratory
+                    </div>
+                    <div class="flex items-center gap-3 text-sm font-medium text-slate-700">
+                        <i class="fa-solid fa-circle-check text-emerald-500"></i> 100% Compassionate Professional Staff
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-100 rounded-xl p-6 border-2 border-dashed border-slate-200 text-center">
+                <i class="fa-solid fa-house-medical text-5xl text-blue-400 mb-3"></i>
+                <h4 class="font-bold text-slate-800 text-base">Home Visits Available</h4>
+                <p class="text-xs text-slate-500 mt-1 max-w-xs mx-auto">Tailored specifically for local elderly residents or individuals requiring home-bound medical evaluations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="bg-white border-y border-slate-100 py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Our Dedicated Medical Services</h3>
+                <p class="text-sm text-slate-500 mt-2">Expert medical interventions matching highest safety benchmarks.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="stethoscope" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">Outpatient Consultation</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Expert medical evaluations and personalized treatment plans for acute and chronic conditions.</p>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="baby" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">Pediatric & Geriatric Observation</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed font-medium">Dedicated monitoring beds equipped specifically for the safety and comfort of children and seniors.</p>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="scissors" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">Dressing & Wound Care</h3>
-                    <p class="text-sm text-slate-600 font-medium leading-relaxed">Sterile management of surgical wounds, lacerations, burns, and chronic diabetic ulcers.</p>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="activity" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">ECG Facilities</h3>
-                    <p class="text-sm text-slate-600 font-medium leading-relaxed">Instant, highly accurate electrocardiogram tracking for immediate cardiac health assessment.</p>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="microscope" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">Laboratory Services</h3>
-                    <p class="text-sm text-slate-600 font-medium leading-relaxed">Comprehensive blood, urine, and metabolic diagnostic tests processed quickly on-site.</p>
-                </div>
-                <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 border border-slate-200/60 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 group">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-xl flex items-center justify-center mb-5 group-hover:bg-medicalBlue group-hover:text-white transition-colors">
-                        <i data-lucide="home" class="h-6 w-6"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-medicalBlue mb-2 tracking-tight group-hover:text-accentGold transition-colors">Elderly Home Visits</h3>
-                    <p class="text-sm text-slate-600 font-medium leading-relaxed">Professional medical consultations and treatments in the comfort of your own home.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="facilities" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs uppercase tracking-widest font-extrabold text-accentGold mb-2 block">Infrastructure</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-medicalBlue tracking-tight">Clinic Facilities & Amenities</h2>
-                <div class="w-12 h-1 bg-accentGold mx-auto mt-4 rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="scissors" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Wound Care Room</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="microscope" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Laboratory</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="activity" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">ECG Facility</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="award" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Wheelchair Assistance</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="sparkles" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Spacious Waiting Area</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Two-Wheeler Parking</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="home" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Home Visit Facility</span>
-                </div>
-                <div class="p-5 rounded-xl border border-slate-100 bg-slate-50/50 flex items-center gap-4 hover:bg-white hover:shadow-md transition-all">
-                    <div class="p-2.5 bg-white text-accentGold rounded-lg shadow-sm border border-slate-100"><i data-lucide="heart" class="h-5 w-5"></i></div>
-                    <span class="font-bold text-sm text-medicalBlue">Free Medical Camps</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-gradient-to-br from-medicalBlue to-[#1c5d94] text-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs uppercase tracking-widest font-extrabold text-accentGold mb-2 block">Commitment</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Why Choose JOY Clinic?</h2>
-                <div class="w-12 h-1 bg-accentGold mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="award" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Experienced Doctors</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">Top-tier medical professionals with decades of clinical experience.</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="shield-check" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Affordable Healthcare</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">Premium healthcare services priced transparently with zero hidden fees.</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="microscope" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Advanced Laboratory</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">State-of-the-art diagnostics ensuring rapid, dependable test outcomes.</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="heart" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Compassionate Care</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">Patient-first approach centered around genuine empathy and attentiveness.</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="activity" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Fast Diagnosis</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">Streamlined operational workflows for minimized waiting and prompt results.</p>
-                </div>
-                <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/15 transition-all duration-300">
-                    <div class="w-10 h-10 bg-accentGold text-medicalBlue rounded-lg flex items-center justify-center mb-4 font-bold shadow-md"><i data-lucide="home" class="h-5 w-5"></i></div>
-                    <h3 class="text-lg font-bold tracking-tight mb-2">Home Care Support</h3>
-                    <p class="text-xs text-white/80 leading-relaxed">Dedicated mobile units tailored explicitly for homebound patients.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-tr from-slate-50 to-blue-50/50 border border-slate-200/60 shadow-xl rounded-3xl p-8 md:p-12">
-                <div class="text-center mb-10">
-                    <div class="w-12 h-12 bg-medicalBlue/10 text-medicalBlue rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="clock" class="h-6 w-6"></i></div>
-                    <h2 class="text-3xl font-extrabold text-medicalBlue tracking-tight">Working Hours & Timings</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <span class="inline-block bg-medicalBlue/10 text-medicalBlue px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">Laboratory</span>
-                        <p class="text-sm font-medium text-slate-600 mb-4">Available early morning for comfortable fasting sample extraction.</p>
-                        <div class="text-xl font-black text-medicalBlue">From 7:30 AM</div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <span class="inline-block bg-accentGold/10 text-accentGold px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3">Clinic Shifts</span>
-                        <div class="space-y-2 mt-2">
-                            <div><span class="text-xs text-slate-400 block font-bold">Morning Session</span><span class="text-sm font-bold text-slate-800">9:30 AM – 2:00 PM</span></div>
-                            <div><span class="text-xs text-slate-400 block font-bold">Evening Session</span><span class="text-sm font-bold text-slate-800">5:30 PM – 9:30 PM</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="py-24 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-medicalBlue tracking-tight">Our Clinic Gallery</h2>
-                <div class="w-12 h-1 bg-accentGold mx-auto mt-4 rounded-full"></div>
-            </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">Clinic Exterior</span>
+                <!-- Service 1 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-stethoscope"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Outpatient Consultation</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Expert medical evaluations, diagnostics updates, and personalized treatment plans for acute or chronic concerns.</p>
                 </div>
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">Reception Area</span>
+                <!-- Service 2 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-baby text-lg"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Pediatric & Geriatric Observation</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Dedicated monitoring beds equipped explicitly for safe tracking and comfort parameters of children and seniors.</p>
                 </div>
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">Consultation Room</span>
+                <!-- Service 3 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-red-100 text-red-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-kit-medical"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Dressing & Wound Care</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Sterile, precise management setups for surgical wounds, lacerations, burns, and chronic diabetic ulcers.</p>
                 </div>
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">Laboratory</span>
+                <!-- Service 4 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">ECG Facilities</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Instant, highly precise electrocardiogram tracking setups ready for sudden cardiac evaluations.</p>
                 </div>
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">ECG Room</span>
+                <!-- Service 5 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-flask-vial"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Laboratory Service</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Comprehensive blood, urine, and biochemical processing diagnostic laboratory operations with quick turnaround times.</p>
                 </div>
-                <div class="group relative aspect-[4/3] rounded-2xl bg-medicalBlue/5 overflow-hidden border border-slate-200/50 flex flex-col justify-center items-center text-slate-400">
-                    <i data-lucide="layers" class="mb-2"></i><span class="text-xs font-bold uppercase">Waiting Lounge</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-medicalBlue tracking-tight">Patient Reviews</h2>
-                <div class="w-12 h-1 bg-accentGold mx-auto mt-4 rounded-full"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-accentGold mb-3"><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i></div>
-                        <p class="text-slate-600 italic text-sm mb-4">“Excellent care and friendly staff.”</p>
-                    </div>
-                    <span class="font-bold text-sm text-medicalBlue block">- Ramanathan S.</span>
-                </div>
-                <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-accentGold mb-3"><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i></div>
-                        <p class="text-slate-600 italic text-sm mb-4">“Very clean clinic and professional doctors.”</p>
-                    </div>
-                    <span class="font-bold text-sm text-medicalBlue block">- Priya K.</span>
-                </div>
-                <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex text-accentGold mb-3"><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i><i data-lucide="star" class="fill-current h-4 w-4"></i></div>
-                        <p class="text-slate-600 italic text-sm mb-4">“Highly recommended for family healthcare.”</p>
-                    </div>
-                    <span class="font-bold text-sm text-medicalBlue block">- Arun Kumar</span>
+                <!-- Service 6 -->
+                <div class="p-5 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-white hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4"><i class="fa-solid fa-truck-medical"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Elderly Home Visits</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Professional medical consultations, treatment monitoring, and follow-up checks executed straight in your home.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-medicalBlue text-center mb-8">Frequently Asked Questions</h2>
+    <!-- FACILITIES SECTION -->
+    <section id="facilities" class="max-w-5xl mx-auto px-4 py-16">
+        <div class="text-center max-w-xl mx-auto mb-10">
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Clinic Facilities & Amenities</h3>
+            <p class="text-sm text-slate-500 mt-2">Modern setups structured keeping patient convenience in mind.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-door-closed text-2xl text-blue-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Wound Care Room</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-microscope text-2xl text-emerald-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Laboratory Setup</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-wave-square text-2xl text-red-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">ECG Facility Area</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-wheelchair text-2xl text-indigo-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Wheelchair Assistance</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-couch text-2xl text-purple-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Spacious Waiting Area</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-motorcycle text-2xl text-amber-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Two-Wheeler Parking</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-house-user text-2xl text-teal-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Home Visit Facility</p>
+            </div>
+            <div class="bg-white border border-slate-100 p-4 rounded-xl text-center shadow-sm">
+                <i class="fa-solid fa-hand-holding-heart text-2xl text-rose-500 mb-2"></i>
+                <p class="text-xs font-semibold text-slate-800">Free Medical Camps</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="bg-slate-900 text-white py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h3 class="text-2xl sm:text-3xl font-bold">Why Choose JOY Clinic?</h3>
+                <p class="text-sm text-slate-400 mt-2">Unwavering focus on standard diagnostic precision and family comfort.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+                <div class="p-5 bg-white/5 rounded-xl border border-white/10">
+                    <i class="fa-solid fa-user-md text-emerald-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold text-base mb-1">Experienced Doctors</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Consult with highly expert medical practitioners holding decades of clinical practice background.</p>
+                </div>
+                <div class="p-5 bg-white/5 rounded-xl border border-white/10">
+                    <i class="fa-solid fa-hand-holding-dollar text-emerald-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold text-base mb-1">Affordable Healthcare</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">Premium healthcare and diagnosis parameters priced transparently without hidden financial shocks.</p>
+                </div>
+                <div class="p-5 bg-white/5 rounded-xl border border-white/10">
+                    <i class="fa-solid fa-square-poll-horizontal text-emerald-400 text-2xl mb-3"></i>
+                    <h4 class="font-bold text-base mb-1">Advanced Laboratory</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">State-of-the-art diagnostic machinery serving accurate, highly reliable diagnostic evaluations quickly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKING HOURS -->
+    <section class="max-w-md mx-auto px-4 py-16 text-center">
+        <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fa-regular fa-clock text-xl"></i></div>
+            <h3 class="text-xl font-bold text-slate-900">Working Hours & Timings</h3>
+            
+            <div class="mt-4 p-2.5 bg-amber-50 text-amber-800 text-xs rounded-xl font-medium mb-4 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-circle-info"></i> Laboratory open early morning for fasting tests
+            </div>
+            
+            <div class="space-y-2 text-sm border-t border-slate-100 pt-4 text-slate-600">
+                <div class="flex justify-between pb-2 border-b border-slate-50"><span>Laboratory Opens</span> <span class="font-bold text-slate-900">From 7:30 AM</span></div>
+                <div class="flex justify-between pb-2 border-b border-slate-50"><span>Morning Session</span> <span class="font-bold text-slate-900">9:30 AM - 1:00 PM</span></div>
+                <div class="flex justify-between"><span>Evening Session</span> <span class="font-bold text-slate-900">4:30 PM - 8:30 PM</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="bg-white border-y border-slate-100 py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Our Clinic Gallery</h3>
+                <p class="text-sm text-slate-500 mt-2">Take a glance at our sterile and neat treatment environments.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-semibold text-slate-700">
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-hospital text-xl text-blue-400 mb-2"></i>Clinic Exterior</div>
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-users-rectangle text-xl text-blue-400 mb-2"></i>Reception Area</div>
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-user-doctor text-xl text-blue-400 mb-2"></i>Consultation Room</div>
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-microscope text-xl text-blue-400 mb-2"></i>Laboratory</div>
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-heart-pulse text-xl text-blue-400 mb-2"></i>ECG Room</div>
+                <div class="bg-slate-100 h-28 rounded-xl flex flex-col justify-center items-center border border-slate-200 text-center p-2"><i class="fa-solid fa-couch text-xl text-blue-400 mb-2"></i>Waiting Lounge</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PATIENT REVIEWS -->
+    <section class="max-w-5xl mx-auto px-4 py-16">
+        <div class="text-center max-w-xl mx-auto mb-10">
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Patient Reviews</h3>
+            <p class="text-sm text-slate-500 mt-2">Hear directly from the community members we serve daily.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                <div class="text-amber-400 mb-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs italic text-slate-600">"Excellent care and friendly staff. The laboratory diagnostics results were handed over very quickly."</p>
+                <p class="text-xs font-bold text-slate-800 mt-3 text-right">- Ramasamy S.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                <div class="text-amber-400 mb-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs italic text-slate-600">"Very clean clinic and professional doctors. Highly recommended for family medical checkups."</p>
+                <p class="text-xs font-bold text-slate-800 mt-3 text-right">- Divya K.</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                <div class="text-amber-400 mb-2"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs italic text-slate-600">"Highly recommended for family healthcare. Home visits structure was a massive helper for my parents."</p>
+                <p class="text-xs font-bold text-slate-800 mt-3 text-right">- Arun Kumar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section class="bg-slate-100 py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Frequently Asked Questions</h3>
+            </div>
+            
             <div class="space-y-4">
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(1)" class="w-full text-left px-6 py-4 font-bold text-medicalBlue flex justify-between items-center bg-slate-50/50">
-                        <span>What are your specific lab timings?</span><i id="faq-icon-1" data-lucide="chevron-down" class="h-4 w-4 transition-transform"></i>
-                    </button>
-                    <div id="faq-ans-1" class="hidden px-6 py-4 border-t border-slate-100 text-sm text-slate-600">Our laboratory processes begin early from 7:30 AM to support fasting tests securely.</div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">What are your laboratory timings?</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">Our laboratory opens promptly at 7:30 AM to comfortably support fasting medical tests correctly.</p>
                 </div>
-                <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-                    <button onclick="toggleFaq(2)" class="w-full text-left px-6 py-4 font-bold text-medicalBlue flex justify-between items-center bg-slate-50/50">
-                        <span>Do I need an appointment for wound care?</span><i id="faq-icon-2" data-lucide="chevron-down" class="h-4 w-4 transition-transform"></i>
-                    </button>
-                    <div id="faq-ans-2" class="hidden px-6 py-4 border-t border-slate-100 text-sm text-slate-600">While bookings help, urgent dressing updates are evaluated immediately on a walk-in layout.</div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-bold text-slate-900 text-sm mb-1">Do I need an appointment for a laboratory test?</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">While walk-ins are fully supported, early registration updates are recommended to avoid morning queues.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-white border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-5">
-                <span class="text-xs uppercase tracking-widest font-extrabold text-accentGold mb-2 block">Reach Out</span>
-                <h2 class="text-3xl font-extrabold text-medicalBlue mb-6">Contact JOY Clinic</h2>
-                <div class="space-y-6 mb-8">
-                    <div class="flex gap-4"><div class="p-3 bg-slate-50 text-medicalBlue rounded-xl border"><i data-lucide="map-pin"></i></div><div><span class="text-xs uppercase font-bold text-slate-400 block mb-1">Address</span><p class="text-slate-700 text-sm font-semibold">Joy clinic, Kalikovil Street, Near Deen Store, Thangachimadam, Tamil Nadu</p></div></div>
-                    <div class="flex gap-4"><div class="p-3 bg-slate-50 text-medicalBlue rounded-xl border"><i data-lucide="phone"></i></div><div><span class="text-xs uppercase font-bold text-slate-400 block mb-1">Phone Links</span><a href="tel:+919360394172" class="block font-bold text-sm text-slate-800">+91 93603 94172</a><a href="tel:+918870624484" class="block font-bold text-sm text-slate-800">+91 88706 24484</a></div></div>
+    <!-- CONTACT & INQUIRY SECTION -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Contact JOY Clinic</h3>
+            <p class="text-xs text-slate-500 mb-6">Reach out immediately via call or navigate directly via map guidance.</p>
+            
+            <div class="space-y-5 text-sm">
+                <div class="flex items-start gap-4">
+                    <div class="bg-blue-100 text-blue-600 p-3 rounded-xl"><i class="fa-solid fa-location-dot text-lg"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Address</h4>
+                        <p class="text-xs text-slate-600 mt-0.5 leading-relaxed">Joy clinic, Kalkoril Street, Near Devi Store,<br>Thiyagadurgam, Tamil Nadu</p>
+                    </div>
                 </div>
-                <div class="w-full h-64 rounded-2xl bg-slate-100 border flex flex-col items-center justify-center text-center p-4">
-                    <i data-lucide="map-pin" class="text-medicalBlue mb-2"></i>
-                    <span class="text-xs font-bold text-slate-700">Google Maps Navigation Layer</span>
-                    <a href="https://maps.google.com" target="_blank" class="mt-4 px-4 py-2 bg-white border rounded-lg text-xs font-bold text-medicalBlue shadow-sm">Open Interactive Map</a>
+                <div class="flex items-start gap-4">
+                    <div class="bg-emerald-100 text-emerald-600 p-3 rounded-xl"><i class="fa-solid fa-phone text-lg"></i></div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Phone Contacts</h4>
+                        <div class="text-xs text-slate-600 mt-0.5 space-y-1">
+                            <p><a href="tel:+919360294172" class="hover:underline text-blue-600 font-medium">+91 93602 94172</a></p>
+                            <p><a href="tel:+918973629406" class="hover:underline text-blue-600 font-medium">+91 89736 29406</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div class="lg:col-span-7 bg-slate-50 p-6 sm:p-8 rounded-2xl border">
-                <h3 class="text-lg font-bold text-medicalBlue mb-4">Send an Instant Inquiry</h3>
-                <form onsubmit="event.preventDefault(); alert('Inquiry submitted successfully!');" class="space-y-4">
-                    <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Name</label><input type="text" required class="w-full p-3 border rounded-xl bg-white text-sm focus:outline-none focus:border-medicalBlue"></div>
-                    <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Phone</label><input type="tel" required class="w-full p-3 border rounded-xl bg-white text-sm focus:outline-none focus:border-medicalBlue"></div>
-                    <div><label class="block text-xs font-bold uppercase text-slate-500 mb-1">Message</label><textarea rows="3" required class="w-full p-3 border rounded-xl bg-white text-sm focus:outline-none focus:border-medicalBlue resize-none"></textarea></div>
-                    <button type="submit" class="w-full py-3.5 bg-medicalBlue text-white font-bold tracking-wide rounded-xl shadow-md">Submit Message</button>
-                </form>
+            <!-- Map Placeholder / Interactive Action -->
+            <div class="mt-8 bg-slate-200 h-44 rounded-2xl flex flex-col items-center justify-center border border-slate-300 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-cover bg-center filter blur-[1px] opacity-40" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="relative z-10 text-center p-4">
+                    <i class="fa-solid fa-map-location-dot text-4xl text-blue-600 drop-shadow mb-2"></i>
+                    <p class="text-xs font-bold text-slate-800">Google Maps Navigation Link</p>
+                    <a href="https://maps.google.com" target="_blank" class="mt-3 inline-block bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">View Interactive Map</a>
+                </div>
             </div>
         </div>
-    </section>
 
-    <footer class="bg-slate-900 text-slate-400 text-xs border-t-2 border-accentGold/40 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div><span class="font-bold text-lg text-white block mb-2">JOY CLINIC</span><p class="leading-relaxed">Providing premium local clinical evaluations, diagnostics processing, and modern family care support configurations.</p></div>
-            <div><h4 class="text-white font-bold uppercase mb-3">Links</h4><div class="flex flex-col gap-2"><a href="#home">Home Layout</a><a href="#about">About Hub</a><a href="#services">Services Suite</a></div></div>
-            <div><h4 class="text-white font-bold uppercase mb-3">Timings</h4><p>Lab: From 7:30 AM</p><p>Morning: 9:30 AM - 2:00 PM</p><p>Evening: 5:30 PM - 9:30 PM</p></div>
-            <div><h4 class="text-white font-bold uppercase mb-3">Contact</h4><p>Kalikovil Street, Thangachimadam</p><p class="mt-1 text-white font-bold">+91 93603 94172</p></div>
-        </div>
-        <div class="border-t border-slate-800 pt-6 text-center text-slate-500 max-w-7xl mx-auto px-4">Copyright © 2026 JOY Clinic. All Rights Reserved.</div>
-    </footer>
-
-    <a href="tel:+919360394172" class="fixed bottom-24 right-6 bg-medicalBlue text-white p-3.5 rounded-full shadow-2xl z-40 border border-accentGold/40"><i data-lucide="phone" class="h-5 w-5"></i></a>
-    <button onclick="openWhatsApp()" class="fixed bottom-6 right-6 bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-40"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.488 1.449 5.412 1.451 5.428 0 9.845-4.414 9.848-9.847.002-2.632-1.019-5.101-2.875-6.958C17.118 1.982 14.65 1.06 12.012 1.06c-5.43 0-9.848 4.415-9.85 9.85-.001 1.97.513 3.894 1.49 5.62l-.988 3.607 3.692-.968z"/></svg></button>
-    <button id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="hidden fixed bottom-6 left-6 bg-slate-800/80 text-white p-3 rounded-xl z-40"><i data-lucide="arrow-up" class="h-4 w-4"></i></button>
-
-    <div id="booking-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div onclick="toggleModal(false)" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
-        <div class="bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl relative z-10 border border-slate-100">
-            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i data-lucide="x" class="h-5 w-5"></i></button>
-            <h3 class="text-xl font-bold text-medicalBlue mb-1">Book an Appointment</h3>
-            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6">JOY Clinic Portal</p>
-            <form onsubmit="event.preventDefault(); alert('Appointment requested! Our front desk office will call you shortly.'); toggleModal(false);" class="space-y-4">
-                <div><label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Patient Name</label><input type="text" required class="w-full px-4 py-2 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:border-medicalBlue"></div>
-                <div><label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Phone Number</label><input type="tel" required class="w-full px-4 py-2 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:border-medicalBlue"></div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div><label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Date</label><input type="date" required class="w-full px-4 py-2 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:border-medicalBlue"></div>
-                    <div><label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Service</label><select required class="w-full px-4 py-2 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:border-medicalBlue"><option value="consult">Outpatient Care</option><option value="wound">Wound Care</option><option value="lab">Lab Testing</option><option value="home">Home Visit</option></select></div>
+        <!-- INQUIRY FORM -->
+        <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm">
+            <h4 class="text-lg font-bold text-slate-900 mb-1">Send an Instant Inquiry</h4>
+            <p class="text-xs text-slate-500 mb-4">Fill out the quick block below, and our staff will respond fast.</p>
+            
+            <form onsubmit="alert('Thank you for your inquiry! We will contact you shortly.'); return false;" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-medium text-slate-700 mb-1">Your Full Name</label>
+                    <input type="text" required placeholder="Enter full name" class="w-full p-3 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500 text-sm">
                 </div>
-                <button type="submit" class="w-full py-3.5 bg-medicalBlue text-white font-bold tracking-wide rounded-xl shadow-lg mt-2">Submit Request</button>
+                <div>
+                    <label class="block font-medium text-slate-700 mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="Enter active contact number" class="w-full p-3 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500 text-sm">
+                </div>
+                <div>
+                    <label class="block font-medium text-slate-700 mb-1">Message Detail</label>
+                    <textarea rows="3" required placeholder="Describe what medical info you need..." class="w-full p-3 rounded-lg border border-slate-200 focus:outline-none focus:border-blue-500 text-sm"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition shadow-md shadow-blue-100 text-sm">Submit Inquiry</button>
             </form>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Start Lucide Icons Engine
-        lucide.createIcons();
+    <!-- BOOK AN APPOINTMENT PORTAL -->
+    <section id="appointment" class="bg-gradient-to-tr from-slate-900 to-blue-950 text-white py-16 px-4">
+        <div class="max-w-md mx-auto bg-white text-slate-800 rounded-3xl p-6 shadow-2xl border border-white/10">
+            <div class="text-center mb-6">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">JOY Clinic Portal</span>
+                <h3 class="text-xl font-bold text-slate-900 mt-2">Book an Appointment</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Secure your time frame instantly with our duty physician.</p>
+            </div>
+            
+            <form onsubmit="alert('Appointment request submitted successfully!'); return false;" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Patient Name</label>
+                    <input type="text" required placeholder="Full name of patient" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50">
+                </div>
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Phone Number</label>
+                    <input type="tel" required placeholder="Active mobile network number" class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Preferred Date</label>
+                        <input type="date" required class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Select Service</label>
+                        <select class="w-full p-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-500 text-sm bg-slate-50 text-slate-600">
+                            <option>Doctor Consultation</option>
+                            <option>Laboratory Diagnostics</option>
+                            <option>ECG Evaluation Check</option>
+                            <option>Wound Management Setup</option>
+                            <option>Elderly Home Visit Task</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-emerald-900/20 tracking-wide text-sm mt-2">Send Booking Request</button>
+            </form>
+        </div>
+    </section>
 
-        // Loading Timeout Simulation
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.classList.add('opacity-0', 'pointer-events-none');
-            }, 800);
-        });
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-12 px-4 border-t border-slate-900">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h5 class="text-white font-bold text-sm mb-3">JOY CLINIC</h5>
+                <p class="leading-relaxed text-slate-500">Providing premium clinical medical evaluations, diagnostic blood test processing, and modern family care support configurations.</p>
+            </div>
+            <div>
+                <h5 class="text-white font-bold text-sm mb-3">Navigation Quicklinks</h5>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-white transition">Home Dashboard</a></li>
+                    <li><a href="#about" class="hover:text-white transition">About Layout</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Services Specifications</a></li>
+                    <li><a href="#facilities" class="hover:text-white transition">Short Code Links</a></li>
+                    <li><a href="#" class="hover:text-white transition"><i class="fa-solid fa-arrow-up"></i> Back to Top</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white font-bold text-sm mb-3">Clinic Schedule</h5>
+                <p class="mb-1 text-slate-400">Lab Processing: <span class="text-white font-medium">7:30 AM Onward</span></p>
+                <p class="mb-1 text-slate-400">Morning Session: <span class="text-white font-medium">9:30 AM - 1:00 PM</span></p>
+                <p class="text-slate-400">Evening Session: <span class="text-white font-medium">4:30 PM - 8:30 PM</span></p>
+            </div>
+        </div>
+        <div class="max-w-5xl mx-auto pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-4 text-center text-slate-600">
+            <p>&copy; 2026 JOY Clinic. All Rights Reserved.</p>
+            <div class="flex gap-4 text-sm text-slate-500">
+                <a href="tel:+919360294172" class="hover:text-white"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://wa.me/919360294172" target="_blank" class="hover:text-white"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
 
-        // Sticky Navbar Layout Handling
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const logoText = document.getElementById('logo-text');
-            const logoSub = document.getElementById('logo-sub');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const scrollTopBtn = document.getElementById('scrollTop');
-
-            if (window.scrollY > 50) {
-                nav.classList.remove('bg-transparent', 'py-5');
-                nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-md', 'py-3');
-                logoText.classList.remove('md:text-white');
-                logoSub.classList.remove('md:text-white/80');
-                logoSub.classList.add('text-slate-500');
-                navLinks.forEach(link => link.classList.remove('md:text-white'));
-            } else {
-                nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-md', 'py-3');
-                nav.classList.add('bg-transparent', 'py-5');
-                logoText.classList.add('md:text-white');
-                logoSub.classList.remove('text-slate-500');
-                logoSub.classList.add('md:text-white/80');
-                navLinks.forEach(link => link.classList.add('md:text-white'));
-            }
-
-            // Scroll to Top visibility metrics
-            if (window.scrollY > 400) {
-                scrollTopBtn.classList.remove('hidden');
-            } else {
-                scrollTopBtn.classList.add('hidden');
-            }
-        });
-
-        // Menu & Dialog Toggle Utility Controllers
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        function toggleModal(show) {
-            const modal = document.getElementById('booking-modal');
-            if (show) modal.classList.remove('hidden');
-            else modal.classList.add('hidden');
-        }
-
-        function toggleFaq(id) {
-            const ans = document.getElementById(`faq-ans-${id}`);
-            const icon = document.getElementById(`faq-icon-${id}`);
-            ans.classList.toggle('hidden');
-            icon.classList.toggle('rotate-180');
-        }
-
-        function openWhatsApp(msg = "Hello JOY Clinic, I would like to inquire about booking a clinical appointment layout.") {
-            window.open(`https://wa.me/919360394172?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-    </script>
 </body>
 </html>
